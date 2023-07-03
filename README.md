@@ -1,34 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 1. CSR(Client-side Rendering)이란 무엇이며, 그것의 장단점에 대하여 설명해주세요.
 
-## Getting Started
+Client-side Rendering (CSR)은 웹 애플리케이션에서 클라이언트(사용자의 브라우저)에서 동적 콘텐츠를 렌더링하는 방법입니다. CSR은 서버로부터 초기 HTML 파일을 받은 후, JavaScript를 사용하여 클라이언트 측에서 데이터를 가져와서 콘텐츠를 동적으로 생성합니다. 이를 위해 클라이언트에서 JavaScript 프레임워크 또는 라이브러리를 사용합니다.
 
-First, run the development server:
+CSR의 장점:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+더 나은 사용자 경험: CSR은 빠른 초기 로딩 속도를 제공할 수 있으며, 콘텐츠의 일부만 변경해도 전체 페이지를 새로고침할 필요가 없어서 더 부드러운 사용자 경험을 제공합니다.
+높은 상호작용성: CSR은 클라이언트 측에서 모든 데이터 처리를 수행하므로 사용자 상호작용에 대한 응답이 빠릅니다. 즉각적인 사용자 피드백이 가능하고, 애플리케이션의 동적인 요구사항을 처리하기에 용이합니다.
+서버 부하 감소: CSR은 서버 측에서 클라이언트 측에서 처리되는 부분을 줄여줍니다. 서버는 초기 페이지를 제공하는데 집중할 수 있으며, 데이터 API에만 집중하여 처리하면 됩니다.
+CSR의 단점:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+초기 로딩 속도: CSR은 초기에 모든 필요한 자원(HTML, JavaScript, CSS)을 다운로드해야 하므로 초기 로딩 속도가 상대적으로 느릴 수 있습니다.
+SEO 문제: 검색 엔진 최적화 (SEO)를 위해서는 서버 측에서 생성된 정적 HTML 페이지가 필요합니다. CSR은 초기에 빈 페이지를 제공하고, 검색 엔진은 JavaScript를 실행하지 않고 페이지를 색인하기 때문에 SEO에 제약이 있을 수 있습니다.
+저사양 기기 문제: CSR은 클라이언트에서 JavaScript를 실행해야 하므로, 저사양 기기나 느린 인터넷 연결을 사용하는 사용자에게는 성능 문제가 발생할 수 있습니다.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+# 2. SPA(Single Page Application)로 구성된 웹 앱에서 SSR(Server-side Rendering)이 필요한 이유에 대하여 설명해주세요.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+SSR (Server-side Rendering)은 SPA (Single Page Application)로 구성된 웹 앱에서 클라이언트 측에서 동적으로 콘텐츠를 렌더링하는 CSR (Client-side Rendering) 방식과는 다른 방식입니다. SSR은 서버에서 초기 HTML을 생성하여 클라이언트에 전달하고, 클라이언트에서는 추가적인 자바스크립트 다운로드 없이 해당 HTML을 바로 렌더링합니다. 이를 통해 SPA의 초기 로딩 속도, 검색 엔진 최적화 (SEO) 및 사용자 경험 개선에 도움이 됩니다.
 
-## Learn More
+SSR이 필요한 이유:
 
-To learn more about Next.js, take a look at the following resources:
+1. 초기 로딩 속도 개선: CSR은 자바스크립트 파일을 다운로드한 후에야 페이지를 렌더링할 수 있기 때문에 초기 로딩 속도가 느릴 수 있습니다. 반면에 SSR은 서버에서 완성된 HTML을 제공하므로 초기 로딩 속도를 개선할 수 있습니다.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. 검색 엔진 최적화 (SEO): 대부분의 검색 엔진은 HTML 페이지를 크롤링하여 색인화합니다. CSR은 초기에 빈 페이지를 제공하고, 검색 엔진은 자바스크립트를 실행하지 않으므로 콘텐츠를 색인화하지 못하는 경우가 있습니다. SSR을 사용하면 검색 엔진이 페이지의 콘텐츠를 쉽게 식별하고 색인화할 수 있습니다.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. 소셜 미디어 공유: 대부분의 소셜 미디어 플랫폼은 URL을 통해 페이지 정보를 가져오는데, CSR은 초기에 빈 페이지를 제공하기 때문에 원하는 콘텐츠가 공유되지 않을 수 있습니다. SSR을 사용하면 소셜 미디어가 페이지의 콘텐츠를 적절하게 가져올 수 있습니다.
 
-## Deploy on Vercel
+# 3. Next.js 프로젝트에서 yarn start(or npm run start) 스크립트를 실행했을 때 실행되는 코드를 Next.js Github 레포지토리에서 찾은 뒤, 해당 파일에 대한 간단한 설명을 첨부해주세요.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Next.js 프로젝트에서 npm run start 또는 yarn start를 실행할 때, 일반적으로 package.json 파일에 정의된 next start 명령어가 실행됩니다. next start 명령어는 Next.js 프로젝트를 프로덕션 모드로 실행하는 역할을 합니다. 이를 위해 next 패키지의 start 명령어를 실행하는 파일은 node_modules/.bin/next 경로에 위치합니다.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+다음은 해당 파일에 대한 간단한 설명입니다:
+
+파일명: next
+
+경로: node_modules/.bin/next
+
+설명: next 파일은 Next.js 프로덕션 서버를 시작하는 스크립트 파일입니다. 이 파일은 일반적으로 package.json 파일에 정의된 next start 명령어를 실행하는 역할을 수행합니다. 프로덕션 서버를 시작하여 빌드된 페이지를 서비스하고, 성능 최적화 및 캐싱 기능을 제공합니다. 실제로는 다양한 모듈과 파일이 포함된 복잡한 스크립트입니다.
